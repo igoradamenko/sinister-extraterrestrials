@@ -1,0 +1,10 @@
+{
+  "name": "demo-project",
+  "version": "0.1.0",
+  "description": "Demo React app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Igor Adamenko <mail@igoradamenko.com> (https://igoradamenko.com)"
+}
