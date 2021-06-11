@@ -5,6 +5,8 @@ const Define = webpack.DefinePlugin;
 const { CleanWebpackPlugin: Clean } = require('clean-webpack-plugin');
 const Terser = require('terser-webpack-plugin');
 const Html = require('html-webpack-plugin');
+const MiniCssExtract = require('mini-css-extract-plugin');
+const Csso = require('csso-webpack-plugin').default;
 
 const resolveByRoot = x => path.resolve(__dirname, '..', ...x.split('/'));
 
@@ -37,6 +39,13 @@ module.exports = {
       chunks: 'all',
       cacheGroups: {
         defaultVendors: false,
+
+        styles: {
+          test: /\.s?css$/,
+          chunks: 'all',
+          name: 'styles',
+          enforce: true,
+        },
       },
     },
     minimize: isProduction,
@@ -57,11 +66,49 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: MiniCssExtract.loader,
+          },
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  require('autoprefixer'),
+                  require('postcss-url')({
+                    url: 'inline',
+                    maxSize: 5,
+                  }),
+                ],
+              },
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+              sassOptions: {
+                includePaths: [resolveByRoot('src')],
+              },
+            },
+          },
+          '@funboxteam/scss-vars-loader',
+        ],
+      },
     ],
   },
 
   plugins: [
     new Clean(),
+    new MiniCssExtract({
+      filename: 'static/[name].[contenthash:16].css',
+      ignoreOrder: true,
+    }),
+    new Csso(),
     new Define({
       BASE_PATH: JSON.stringify(basePath),
     }),
