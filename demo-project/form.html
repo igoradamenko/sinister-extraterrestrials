@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- TODO: define fonts properly -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@500&family=Sarpanch:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    html,body {
+      margin: 0;
+      font-family: 'Sarpanch', sans-serif;
+      font-weight: 500;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      
+      /* TODO: inline */
+      /* TODO: maybe change spider's fill to this color */
+      background: #960714 url('./bg.svg') repeat center;
+      background-size: 28px 16px;
+      box-shadow: inset 0 0 32px #770610;
+    }
+
+    .form {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      max-width: 460px;
+      transform: translate(-50%, -50%);
+    }
+
+    .form__field + .form__field {
+      margin-top: 32px;
+    }
+
+    input {
+      font: inherit;
+      border: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .input {
+      font-size: 24px;
+      line-height: 1;
+      padding: 8px 16px;
+      border-radius: 8px;
+      outline: 0; /* TODO: fix it for the sake of daredevil! */
+      box-shadow: 0 8px 16px #821620;
+      caret-color: #960714;
+    }
+
+    .form__label {
+      display: block;
+      color: #fff;
+      font-size: 18px;
+      line-height: 24px;
+      text-transform: uppercase;
+    }
+
+    .form__label + .form__input {
+      margin-top: 4px;
+    }
+
+    ::selection {
+      background-color: rgba(200, 200, 200, .5);
+    }
+
+    .assistant {
+      display: flex;
+    }
+
+    .assistant__logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      margin-left: -24px;
+    }
+
+    .assistant__message {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .assistant__balloon {
+      position: relative;
+      background: #570810;
+      padding: 16px 16px;
+      color: #fff;
+      border-radius: 0 8px 8px 8px;
+      margin-left: 8px;
+      animation: slideBottomToTop .3s linear 1 forwards;
+      animation-timing-function: ease-in-out;
+      transform: translateY(-32px);
+      opacity: .75;
+      transform-origin: 0 0;
+    }
+
+    @keyframes slideBottomToTop {
+      0% {
+        transform: translateY(-32px);
+        opacity: .75;
+      }
+
+      75% {
+        transform: translateY(16px);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .assistant__balloon::before {
+      content: '';
+      position: absolute;
+      left: -13px;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      /* TODO: redesign the icon */
+      background: url(./balloon-triangle.svg) no-repeat center;
+      background-size: 16px;
+    }
+
+    .assistant__balloon p {
+      margin: 8px 0;
+    }
+
+    .assistant__balloon p:first-child {
+      margin-top: 0;
+    }
+
+    .assistant__balloon p:last-child {
+      margin-bottom: 0;
+    }
+
+    .form__assistant + .form__field {
+      margin-top: 48px;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 16px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+
+    .service-name {
+      font-size: 32px;
+      line-height: 40px;
+      text-decoration: none;
+      color: #fff;
+      text-shadow:
+        -1px -1px 0 #570810,
+         0   -1px 0 #570810,
+         1px -1px 0 #570810,
+         1px  0   0 #570810,
+         1px  1px 0 #570810,
+         0    1px 0 #570810,
+        -1px  1px 0 #570810,
+        -1px  0   0 #570810;
+    }
+  </style>
+</head>
+<body>
+  <!-- TODO: add face id login -->
+  <form class="form">
+    <div class="assistant form__assistant">
+      <img src="./tony.png" alt="" class="assistant__logo">
+      
+      <div class="assistant__message">
+        <div class="assistant__balloon">
+          <p>Hey kid!</p>
+          <p>Hope you haven't forgotten the password you set back then in Avengers tower!</p>
+          <!-- TODO: add pseudolink to reset -->
+          <p>If you have, feel free to reset it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form__field">
+      <label class="form__label">E-mail:</label>
+      <input class="input form__input" type="email" name="email">
+    </div>
+    <div class="form__field">
+      <label class="form__label">Password:</label>
+      <!-- TODO: add a way to make password visible -->
+      <input class="input form__input" type="password" name="password">
+    </div>
+
+    <!-- TODO: add buttons? -->
+  </form>
+
+  <footer class="footer">
+    <abbr class="service-name" title="Reliable Omnipotent Babysitter">R.O.B.</abbr>
+  </footer>
+</body>
+</html>
