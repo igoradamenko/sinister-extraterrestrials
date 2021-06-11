@@ -10,7 +10,7 @@
 
 - **[figma-search-extension](https://github.com/igoradamenko/figma-search-extension)** — complex Chrome extension.
 
-- [Demo Project](./demo-project) — small React app.
+- **[Demo Project](./demo-project)** — small React app.
 
 ## CSS
 
@@ -18,7 +18,7 @@
 
 - **[figma-search-extension](https://github.com/igoradamenko/figma-search-extension)** — BEM styles written in pure CSS.
 
-- [Demo Project](./demo-project) — BEM in React app, using SCSS.
+- **[Demo Project](./demo-project)** — BEM in React app, using SCSS.
 
 ## Demo Project
 
