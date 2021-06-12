@@ -2,6 +2,7 @@ const path = require('path');
 
 const webpack = require('webpack');
 const Define = webpack.DefinePlugin;
+const Provide = webpack.ProvidePlugin;
 const { CleanWebpackPlugin: Clean } = require('clean-webpack-plugin');
 const Terser = require('terser-webpack-plugin');
 const Html = require('html-webpack-plugin');
@@ -14,7 +15,10 @@ const outputPath = resolveByRoot('public');
 
 module.exports = {
   entry: {
-    app: resolveByRoot('src/app.jsx')
+    app: [
+      'react-hot-loader/patch',
+      resolveByRoot('src/app.jsx'),
+    ],
   },
 
   output: {
@@ -31,6 +35,9 @@ module.exports = {
   resolve: {
     modules: [resolveByRoot('src'), 'node_modules'],
     extensions: ['.js', '.jsx'],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
 
   optimization: {
@@ -44,6 +51,11 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
       {
         test: /\.scss$/,
         use: [
@@ -82,6 +94,15 @@ module.exports = {
     new Define({
       BASE_PATH: JSON.stringify(basePath),
     }),
+    new Provide({
+      React: 'react',
+      Component: ['react', 'Component'],
+      PureComponent: ['react', 'PureComponent'],
+      Fragment: ['react', 'Fragment'],
+      PropTypes: 'prop-types',
+
+      b: 'bem-react-helper',
+    }),
     new Html({
       template: resolveByRoot('src/index.ejs'),
       minify: {
@@ -101,4 +122,9 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
   },
+
+
+  // fix for broken devServer browserslistrc recognition
+  // see: https://github.com/webpack/webpack-dev-server/issues/2758#issuecomment-706840237
+  target: 'web',
 }

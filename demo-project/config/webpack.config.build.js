@@ -2,6 +2,7 @@ const path = require('path');
 
 const webpack = require('webpack');
 const Define = webpack.DefinePlugin;
+const Provide = webpack.ProvidePlugin;
 const { CleanWebpackPlugin: Clean } = require('clean-webpack-plugin');
 const Terser = require('terser-webpack-plugin');
 const Html = require('html-webpack-plugin');
@@ -66,6 +67,12 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
+
       // TODO: add file-loader? and something to inline into index.ejs?
 
       {
@@ -114,6 +121,15 @@ module.exports = {
     new Csso(),
     new Define({
       BASE_PATH: JSON.stringify(basePath),
+    }),
+    new Provide({
+      React: 'react',
+      Component: ['react', 'Component'],
+      PureComponent: ['react', 'PureComponent'],
+      Fragment: ['react', 'Fragment'],
+      PropTypes: 'prop-types',
+
+      b: 'bem-react-helper',
     }),
     new Html({
       template: resolveByRoot('src/index.ejs'),
