@@ -1,0 +1,14 @@
+.#{$b}__field {
+  height: 48px;
+  font-size: 24px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  outline: 0; /* TODO: fix it for the sake of daredevil! */
+  box-shadow: 0 8px 16px #821620;
+  caret-color: #960714; /* TODO: probably move colors to variables */
+  transition: box-shadow .1s ease-in-out;
+  
+  &:hover, &:focus {
+    box-shadow: 0 8px 16px #560c13;
+  }
+}
