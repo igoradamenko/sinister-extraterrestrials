@@ -4,7 +4,9 @@ export default function Button(props) {
       className={b('button', props)}
       type={props.mods.type}
     >
-      {props.children}
+      <span className="button__text">
+        {props.children}
+      </span>
     </button>
   );
 }

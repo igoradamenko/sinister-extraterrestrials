@@ -1,3 +1,9 @@
 .#{$b} {
   display: block;
+  cursor: pointer;
+  
+  // TODO: improve a11y / focus
+  &:active {
+    transform: translateY(2px);
+  }
 }
