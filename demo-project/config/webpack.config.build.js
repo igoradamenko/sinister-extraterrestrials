@@ -109,6 +109,16 @@ module.exports = {
           '@funboxteam/scss-vars-loader',
         ],
       },
+
+
+      {
+        test: /\.(png|jpg|jpeg|gif|svg|webp)$/,
+        loader: 'file-loader',
+        options: {
+          esModule: false,
+          name: 'static/images/[hash].[ext]',
+        },
+      },
     ],
   },
 

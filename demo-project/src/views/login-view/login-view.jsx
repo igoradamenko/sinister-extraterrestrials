@@ -5,6 +5,7 @@ import Input from 'components/input';
 
 export default function LoginView(props) {
   return (
+    // TODO: add face id login
     <Form>
       <Assistant mix="form__assistant"/>
 
@@ -15,6 +16,7 @@ export default function LoginView(props) {
       
       <Form__Field>
         <Form__Label>Password:</Form__Label>
+        {/* TODO: add a way to make password visible */}
         <Input mods={{ type: 'password' }} />
       </Form__Field>
 

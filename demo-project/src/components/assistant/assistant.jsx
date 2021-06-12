@@ -1,8 +1,8 @@
 export default function Assistant(props) {
   return (
     <div className={b('assistant', props)}>
-      {/* TODO: a11y */}
-      <img src="./assistant.png" alt="" className="assistant__logo"/>
+      {/* TODO: a11y; also optimize */}
+      <img src={require('./assistant.png')} alt="" className="assistant__logo"/>
       
       <div className="assistant__message">
         <div className="assistant__balloon">
