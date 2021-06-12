@@ -11,13 +11,13 @@ export default function LoginView(props) {
 
       <Form__Field>
         <Form__Label>E-mail:</Form__Label>
-        <Input mods={{ type: 'email' }} />
+        <Input mods={{ type: 'email' }} mix="form__input" />
       </Form__Field>
       
       <Form__Field>
         <Form__Label>Password:</Form__Label>
         {/* TODO: add a way to make password visible */}
-        <Input mods={{ type: 'password' }} />
+        <Input mods={{ type: 'password' }} mix="form__input" />
       </Form__Field>
 
       <Form__Field>
