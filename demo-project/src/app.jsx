@@ -1,3 +1,3 @@
 require('./app.scss');
 
-alert(1);
+document.body.classList.add('root_inited');

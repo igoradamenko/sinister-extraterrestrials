@@ -2,6 +2,10 @@ html, body {
   margin: 0;
 }
 
-body {
-  background: #111;
+.root_inited {
+  background-color: #960714;
+}
+
+.root_inited .root__preloader {
+  display: none;
 }

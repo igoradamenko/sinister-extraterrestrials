@@ -66,6 +66,8 @@ module.exports = {
 
   module: {
     rules: [
+      // TODO: add file-loader? and something to inline into index.ejs?
+
       {
         test: /\.scss$/,
         use: [
@@ -78,6 +80,7 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: [
+                  // TODO: setup browserslist
                   require('autoprefixer'),
                   require('postcss-url')({
                     url: 'inline',
