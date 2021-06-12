@@ -20,9 +20,11 @@
     .root {
       width: 100vw;
       min-height: 100vh;
+      min-height: var(--viewport-height);
       font-family: Sarpanch, Helvetica, Arial, sans-serif;
       font-weight: 500;
       background: #111 repeat center;
+      /* TODO: probably may decrease size of the svg ↓ */
       background-image: url("data:image/svg+xml,%3Csvg width='766' height='441' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23570810' stroke-width='24'%3E%3Cpath d='M-128 220.5L-255 441l127 220.5h256L255 441 128 220.5h-256zM638 220.5L511 441l127 220.5h256L1021 441 894 220.5H638zM-128-220.5L-255 0l127 220.5h256L255 0 128-220.5h-256zM638-220.5L511 0l127 220.5h256L1021 0 894-220.5H638z'/%3E%3Cpath d='M255 0L128 220.5 255 441h256l127-220.5L511 0H255zM255-441L128-220.5 255 0h256l127-220.5L511-441H255zM255 441L128 661.5 255 882h256l127-220.5L511 441H255z'/%3E%3C/g%3E%3C/svg%3E%0A");
       background-size: 28px 16px;
       transition: background-color .5s ease-in-out, box-shadow .5s ease-in-out;
@@ -33,7 +35,7 @@
     }
 
     .root__preloader, .root__content {
-      transition: opacity .3s ease-in-out;
+      transition: opacity .5s ease-in-out;
     }
 
     .global-preloader {
