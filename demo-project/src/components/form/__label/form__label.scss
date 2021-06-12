@@ -1,0 +1,11 @@
+.#{$b}__label {
+  display: block;
+  color: #fff;
+  font-size: 18px;
+  line-height: 24px;
+  text-transform: uppercase;
+
+  + .#{$b}__input {
+    margin-top: 4px;
+  }
+}

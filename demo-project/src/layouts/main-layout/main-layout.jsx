@@ -8,3 +8,7 @@ export default function MainLayout(props) {
     </>
   );
 }
+
+MainLayout.propTypes = {
+  children: PropTypes.node,
+};

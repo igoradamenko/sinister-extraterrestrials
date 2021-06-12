@@ -1,0 +1,16 @@
+/* TODO: does not look good */
+.#{$b}_view_pseudo-link {
+  color: #fff;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  text-shadow:
+    -1px -1px 0 #570810,
+     0   -1px 0 #570810,
+     1px -1px 0 #570810,
+     1px  0   0 #570810,
+     1px  1px 0 #570810,
+     0    1px 0 #570810,
+    -1px  1px 0 #570810,
+    -1px  0   0 #570810;
+}

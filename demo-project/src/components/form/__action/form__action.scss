@@ -1,0 +1,7 @@
+.#{$b}__action {
+  margin: 0 auto;
+
+  & + & {
+    margin-top: 8px;
+  }
+}

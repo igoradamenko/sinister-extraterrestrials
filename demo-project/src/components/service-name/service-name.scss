@@ -1,0 +1,15 @@
+.#{$b} {
+  font-size: 32px;
+  line-height: 40px;
+  text-decoration: none;
+  color: #fff;
+  text-shadow:
+    -1px -1px 0 #570810,
+     0   -1px 0 #570810,
+     1px -1px 0 #570810,
+     1px  0   0 #570810,
+     1px  1px 0 #570810,
+     0    1px 0 #570810,
+    -1px  1px 0 #570810,
+    -1px  0   0 #570810;
+}

@@ -4,3 +4,17 @@ input {
   width: 100%;
   box-sizing: border-box;
 }
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  outline: none; /* TODO: fix it; should it be placed in a block? */
+  font: inherit;
+}
+
+
+::selection {
+  background-color: rgba(200, 200, 200, .5);
+}
