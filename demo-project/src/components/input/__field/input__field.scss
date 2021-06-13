@@ -3,13 +3,13 @@
   font-size: 24px;
   padding: 8px 16px;
   border-radius: 8px;
-  box-shadow: 0 8px 16px #821620;
-  caret-color: #960714; /* TODO: probably move colors to variables */
+  box-shadow: 0 8px 16px $redShadow;
+  caret-color: $redRuby;
   transition: box-shadow .1s ease-in-out;
-  background: #fff;
-  color: #000;
+  background: $white;
+  color: $black;
   
   &:hover, &:focus {
-    box-shadow: 0 8px 16px #560c13;
+    box-shadow: 0 8px 16px rgba($black, .4);
   }
 }

@@ -33,7 +33,6 @@ module.exports = {
     path: resolveByRoot('public'),
     publicPath: basePath,
     uniqueName: 'app',
-    // TODO: move 'static' to variable
     filename: 'static/[name].[contenthash].js',
   },
 
@@ -112,6 +111,12 @@ module.exports = {
               sassOptions: {
                 includePaths: [resolveByRoot('src')],
               },
+            },
+          },
+          {
+            loader: '@funboxteam/scss-imports-loader',
+            options: {
+              paths: require(resolveByRoot('config/scss-imports')),
             },
           },
           '@funboxteam/scss-vars-loader',

@@ -1,6 +1,6 @@
 .#{$b}_inited {
-  background-color: #960714;
-  box-shadow: inset 0 0 32px #770610;
+  background-color: $redRuby;
+  box-shadow: inset 0 0 32px rgba($black, .25);
   
   .#{$b}__preloader {
     opacity: 0;

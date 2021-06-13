@@ -95,6 +95,12 @@ module.exports = {
               },
             },
           },
+          {
+            loader: '@funboxteam/scss-imports-loader',
+            options: {
+              paths: require(resolveByRoot('config/scss-imports')),
+            },
+          },
           '@funboxteam/scss-vars-loader',
         ],
       },

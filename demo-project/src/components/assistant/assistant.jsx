@@ -58,6 +58,7 @@ export default function Assistant(props) {
   throw new Error('Unknown Assistant type');
 }
 
+// TODO: check proptypes
 Assistant.propTypes = {
   mods: PropTypes.shape({
     type: PropTypes.oneOf(['greeting', 'success', 'password-reset']).isRequired,

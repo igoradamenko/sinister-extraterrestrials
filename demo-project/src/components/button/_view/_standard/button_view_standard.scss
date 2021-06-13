@@ -2,13 +2,13 @@
   width: 100%;
   padding: 8px 16px;
   height: 48px;
-  background: #111;
+  background: $almostBlack;
   border-radius: 8px;
   font-size: 24px;
   line-height: 32px;
-  color: #fff;
+  color: $white;
   text-transform: uppercase;
-  box-shadow: 0 8px 16px #821620;
+  box-shadow: 0 8px 16px $redShadow;
   transition: box-shadow .1s ease-in-out;
   
   &:hover, &:focus {
@@ -16,7 +16,7 @@
   }
 
   &.#{$b}_loading {
-    background-image: linear-gradient(-45deg, #111 25%, rgba(#960714, .5) 25%, rgba(#960714, .5) 50%, #111 50%, #111 75%, rgba(#960714, .5) 75%, rgba(#960714, .5));
+    background-image: linear-gradient(-45deg, $almostBlack 25%, rgba($redRuby, .5) 25%, rgba($redRuby, .5) 50%, $almostBlack 50%, $almostBlack 75%, rgba($redRuby, .5) 75%, rgba($redRuby, .5));
     background-size: 35px 35px;
     pointer-events: none;
     animation: buttonLoading 2s linear infinite;
@@ -34,6 +34,6 @@
 
   &.#{$b}_disabled {
     pointer-events: none;
-    color: #845d5d;
+    color: $redDisabled;
   }
 }

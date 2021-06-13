@@ -4,8 +4,8 @@
   
   .#{$b}__logo {
     margin: auto;
-    border: 4px solid #fff;
-    background: #fff;
-    box-shadow: 0 8px 16px rgba(#000, .15);
+    border: 4px solid $white;
+    background: $white;
+    box-shadow: 0 8px 16px rgba($black, .2);
   }
 }
