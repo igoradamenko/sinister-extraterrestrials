@@ -2,14 +2,9 @@ export default class Input extends PureComponent {
   constructor(props) {
     super(props);
 
-    const {
-      mods = {},
-      value,
-    } = props;
+    const { mods = {} } = props;
 
     this.state = {
-      filled: !!value,
-      focused: props.autoFocus,
       type: mods.type,
     };
 
@@ -17,60 +12,47 @@ export default class Input extends PureComponent {
     this.handlePasswordSwitch = this.handlePasswordSwitch.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    const { value = '' } = this.props;
-
-    if (value !== prevProps.value) {
-      this.setState({
-        filled: !!value,
-      });
-    }
-  }
-
   handleChange({ target: { value } }) {
-    const { mods = {}, onChange } = this.props;
-
-    this.setState({
-      filled: !!value,
-    });
-
-    onChange(value);
+    this.props.onChange(value);
   }
 
   handlePasswordSwitch() {
-    this.setState(prevState => ({
-      ...prevState,
-      type: prevState.type === 'password' ? 'text' : 'password',
-    }));
+    this.setState(
+      prevState => ({
+        ...prevState,
+        type: prevState.type === 'password' ? 'text' : 'password',
+      }), 
+      () => {
+        this.inputNode.focus();
+        
+        const caretPosition = this.inputNode.value.length;
+        this.inputNode.setSelectionRange(caretPosition, caretPosition);
+      },
+    );
   }
 
   render() {
     const {
-      error,
-      maxLength,
       mods = {},
       value,
       autoFocus,
     } = this.props;
 
-    const { focused, filled, type } = this.state;
-
-    const defaultMods = {
-      focused,
-      filled,
-    };
+    const { type } = this.state;
 
     const initialType = mods.type;
 
     const autoComplete = initialType !== 'password' ? 'on' : 'off';
     const autoCorrect = initialType !== 'password' ? 'on' : 'off';
+    const isFilled = value.length > 0;
 
     return (
       <div
-        className={b('input', this.props, defaultMods)}
+        className={b('input', this.props)}
       >
         <input
           className="input__field"
+          ref={r => this.inputNode = r}
           value={value}
           type={this.state.type}
           autoFocus={autoFocus}
@@ -79,7 +61,7 @@ export default class Input extends PureComponent {
           autoCorrect={autoCorrect}
         />
 
-        {initialType === 'password' && (
+        {initialType === 'password' && isFilled && (
           // TODO: a11y
           <button
             type="button"
