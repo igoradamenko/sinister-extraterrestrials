@@ -114,7 +114,6 @@ export default class LoginView extends Component {
         />
 
         <Form__Field mods={{ error: isError }}>
-          {/* TODO: check autocomplete! */}
           <Form__Label for="email-field">E-mail:</Form__Label>
           
           <Input

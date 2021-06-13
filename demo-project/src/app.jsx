@@ -17,11 +17,7 @@ const App = hot(() => (
   </MainLayout>
 ));
 
-getAuth()
-  .then(render)
-  .catch(() => {
-    // TODO: add something here?
-  });
+getAuth().then(render)
 
 function render() {
   ReactDOM.render(<App/>, ROOT_NODE);

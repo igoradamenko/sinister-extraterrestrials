@@ -88,7 +88,6 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: [
-                  // TODO: setup browserslist
                   require('autoprefixer'),
                   require('postcss-url')({
                     url: 'inline',
