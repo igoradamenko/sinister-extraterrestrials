@@ -23,37 +23,48 @@ export default class LoginView extends Component {
   }
 
   handleEmailChange(email) {
-    this.setState({ email, isError: false });
+    this.setState({ email });
   }
 
   handlePasswordChange(password) {
-    this.setState({ password, isError: false });
+    this.setState({ password });
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
 
     const { email, password } = this.state;
 
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, isError: false });
 
-    postAuth({ email, password })
-      .then(() => this.setState({ isLoading: false, isLoggedIn: true }))
-      .catch(() => this.setState({ isLoading: false, isError: true }));
+    const res = await postAuth({ email, password })
+
+    switch (res.status) {
+      case STATUS.OK: 
+        this.setState({ isLoading: false, isLoggedIn: true });
+        break;
+
+      // TODO: add some hints on too many errors?
+      case STATUS.WRONG_CREDENTIALS:
+        this.setState({ isLoading: false, isError: true });
+        break;
+
+      default:
+        throw new Error('Unknown postAuth status');
+    }
   }
 
   render() {
-    const { email, password, isLoading } = this.state;
+    const { email, password, isLoading, isError } = this.state;
 
     const isEmpty = !email || !password;
 
     return (
     // TODO: add face id login
-    // TODO: errors!
     <Form onSubmit={this.handleSubmit}>
       <Assistant mix="form__assistant"/>
 
-      <Form__Field>
+      <Form__Field mods={{ error: isError }}>
         {/* TODO: autofocus; also check autocomplete! */}
         <Form__Label>E-mail:</Form__Label>
         
@@ -65,7 +76,7 @@ export default class LoginView extends Component {
         />
       </Form__Field>
       
-      <Form__Field>
+      <Form__Field mods={{ error: isError }}>
         {/* TODO: connect label and input */}
         <Form__Label>Password:</Form__Label>
         

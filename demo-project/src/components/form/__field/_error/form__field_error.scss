@@ -1,0 +1,26 @@
+.#{$b}__field_error {
+  animation: formFieldErrorShake .15s linear 1 forwards;
+  animation-timing-function: ease-in-out;
+  
+  @keyframes formFieldErrorShake {
+    0% {
+      transform: translateX(0px) rotate(0deg);
+    }
+
+    25% {
+      transform: translateX(-10px) rotate(-3deg);
+    }
+
+    50% {
+      transform: translateX(0px) rotate(0deg);
+    }
+
+    75% {
+      transform: translateX(10px) rotate(3deg);
+    }
+
+    100% {
+      transform: translateX(0px) rotate(0deg);
+    }
+  }
+}
