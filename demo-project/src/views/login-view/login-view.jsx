@@ -65,7 +65,7 @@ export default class LoginView extends Component {
       <Assistant mix="form__assistant"/>
 
       <Form__Field mods={{ error: isError }}>
-        {/* TODO: autofocus; also check autocomplete! */}
+        {/* TODO: check autocomplete! */}
         <Form__Label>E-mail:</Form__Label>
         
         <Input
@@ -73,6 +73,7 @@ export default class LoginView extends Component {
           mix="form__input"
           value={email}
           onChange={this.handleEmailChange}
+          autoFocus
         />
       </Form__Field>
       
