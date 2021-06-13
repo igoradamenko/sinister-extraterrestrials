@@ -72,7 +72,6 @@ export default class Input extends PureComponent {
         />
 
         {initialType === 'password' && isFilled && !mods.disabled && (
-          // TODO: a11y
           <button
             type="button"
             className="input__password-switcher"

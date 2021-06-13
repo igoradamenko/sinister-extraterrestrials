@@ -4,8 +4,12 @@ export default function Assistant(props) {
   if (type === 'success') {
     return (
       <div className={b('assistant', props)}>
-        {/* TODO: a11y; also optimize */}
-        <img src={require('./_type/_success/assistant_type_success.png')} alt="" className="assistant__logo"/>
+        <img
+          src={require('./_type/_success/assistant_type_success.png')}
+          srcSet={`${require('./_type/_success/assistant_type_success.png')} 1x, ${require('./_type/_success/assistant_type_success@2x.png')} 2x`}
+          alt="Winking Tony Stark"
+          className="assistant__logo"
+        />
       </div>
     );
   }
@@ -13,15 +17,23 @@ export default function Assistant(props) {
   if (type === 'greeting' || type === 'password-reset') {
     const photoSrc = type === 'greeting' 
       ? require('./_type/_greeting/assistant_type_greeting.png')
-      : require('./_type/_password-reset/assistant_type_password-reset.png')
+      : require('./_type/_password-reset/assistant_type_password-reset.png');
+
+    const photoSrc2x = type === 'greeting' 
+      ? require('./_type/_greeting/assistant_type_greeting@2x.png')
+      : require('./_type/_password-reset/assistant_type_password-reset@2x.png');
+
+    const photoDesc = type === 'greeting'
+      ? 'Smiling Tony Stark'
+      : 'Rolling eyes Tony Stark';
 
     return (
       <div className={b('assistant', props)}>
         <div className="assistant__message">
-          {/* TODO: a11y; also optimize */}
           <img 
             src={photoSrc} 
-            alt="" 
+            srcSet={`${photoSrc} 1x, ${photoSrc2x} 2x`}
+            alt={photoDesc}
             className="assistant__logo"
           />
           

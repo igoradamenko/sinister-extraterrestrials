@@ -141,8 +141,15 @@
       document.getElementById('global-preloader').remove();
 
       var node = document.createElement('img');
-      node.setAttribute('src', '<%= htmlWebpackPlugin.files.publicPath %>static/old-browser.png');
+      
+      var img1xPath = '<%= htmlWebpackPlugin.files.publicPath %>static/old-browser.png';
+      var img2xPath = '<%= htmlWebpackPlugin.files.publicPath %>static/old-browser@2x.png';
+
+      node.setAttribute('src', img1xPath);
+      node.setAttribute('srcSet', img1xPath + ' 1x, ' + img2xPath + ' 2x');
+      node.setAttribute('alt', 'Tony Stark makes a face saying “Your browser is too old, darling”');
       node.setAttribute('class', 'old-browser');
+
       document.body.appendChild(node);
     }
   </script> 
