@@ -36,6 +36,8 @@ export default class Input extends PureComponent {
       mods = {},
       value,
       autoFocus,
+      id,
+      name,
     } = this.props;
 
     const { type } = this.state;
@@ -52,6 +54,8 @@ export default class Input extends PureComponent {
       >
         <input
           className="input__field"
+          id={id}
+          name={name}
           ref={r => this.inputNode = r}
           disabled={mods.disabled}
           value={value}
@@ -82,6 +86,8 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   mods: PropTypes.shape({
     disabled: PropTypes.bool,
     type: PropTypes.oneOf(['email', 'password']).isRequired,

@@ -66,11 +66,13 @@ export default class LoginView extends Component {
 
       <Form__Field mods={{ error: isError }}>
         {/* TODO: check autocomplete! */}
-        <Form__Label>E-mail:</Form__Label>
+        <Form__Label for="email-field">E-mail:</Form__Label>
         
         <Input
           mods={{ type: 'email', disabled: isLoading }}
           mix="form__input"
+          id="email-field"
+          name="email"
           value={email}
           onChange={this.handleEmailChange}
           autoFocus
@@ -78,12 +80,13 @@ export default class LoginView extends Component {
       </Form__Field>
       
       <Form__Field mods={{ error: isError }}>
-        {/* TODO: connect label and input */}
-        <Form__Label>Password:</Form__Label>
+        <Form__Label for="password-field">Password:</Form__Label>
         
         <Input
           mods={{ type: 'password', disabled: isLoading }}
-          mix="form__input" 
+          mix="form__input"
+          id="password-field"
+          name="password"
           value={password}
           onChange={this.handlePasswordChange}
         />
