@@ -5,6 +5,8 @@ import MainLayout from 'layouts/main-layout';
 
 import LoginView from 'views/login-view';
 
+import { STATUS, getAuth } from 'services/fetcher';
+
 require('components/root');
 
 const ROOT_NODE = document.getElementById('app');
@@ -15,11 +17,17 @@ const App = hot(() => (
   </MainLayout>
 ));
 
-ReactDOM.render(<App/>, ROOT_NODE);
+getAuth()
+  .then(render)
+  .catch(() => {
+    // TODO: add something here?
+  });
 
-document.body.addEventListener('transitionend', onBodyTransitionEnd, { once: true });
-
-document.body.classList.add('root_inited');
+function render() {
+  ReactDOM.render(<App/>, ROOT_NODE);
+  document.body.addEventListener('transitionend', onBodyTransitionEnd, { once: true });
+  document.body.classList.add('root_inited');
+}
 
 setViewportHeightVariable();
 window.addEventListener('resize', setViewportHeightVariable);
