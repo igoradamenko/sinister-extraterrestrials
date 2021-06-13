@@ -64,7 +64,6 @@ export default class LoginView extends Component {
         this.setState({ isLoading: false, isLoggedIn: true });
         break;
 
-      // TODO: add some hints on too many errors?
       case STATUS.WRONG_CREDENTIALS:
         this.setState({ isLoading: false, isError: true });
         break;

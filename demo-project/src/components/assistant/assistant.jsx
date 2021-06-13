@@ -37,21 +37,19 @@ export default function Assistant(props) {
             className="assistant__logo"
           />
           
-          {/* TODO: typograf */}
           {type === 'greeting' && (
             <>
               <p>Hey kid!</p>
-              <p>Hope you haven't forgotten the password you set back then in Avengers tower!</p>
+              <p>Hope you haven&rsquo;t forgotten the password you set back then in&nbsp;Avengers tower!</p>
             </>
           )}
 
           {type === 'password-reset' && (
             <>
-              <p>Well, that's pretty.</p>
-              <p>I'm giving full access to the system that may kill everyone on Earth to the boy who can't even remember his own password. Nice!</p>
+              <p>Well, that&rsquo;s pretty.</p>
+              <p>I&rsquo;m giving full access to&nbsp;the system that may kill everyone on&nbsp;Earth to&nbsp;the boy who can&rsquo;t even remember his own password. Nice!</p>
             </>
           )}
-          
         </div>
       </div>
     );
