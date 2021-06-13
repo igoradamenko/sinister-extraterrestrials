@@ -14,6 +14,15 @@ const resolveByRoot = x => path.resolve(__dirname, '..', ...x.split('/'));
 const basePath = process.env.BASE_PATH || '/';
 const outputPath = resolveByRoot('public');
 
+const { sep: pathSeparator } = require('path');
+const isFavicon = filepath => [
+  'favicon.ico',
+  'favicon.svg',
+  'apple-touch-icon.png',
+  'android-192.png',
+  'android-512.png',
+].includes(filepath.split(pathSeparator).pop());
+
 module.exports = {
   entry: {
     app: [
@@ -92,6 +101,7 @@ module.exports = {
 
       {
         test: /\.(png|jpg|jpeg|gif|svg|webp)$/,
+        exclude: [isFavicon],
         loader: 'file-loader',
         options: {
           esModule: false,
@@ -105,6 +115,29 @@ module.exports = {
         options: {
           esModule: false,
           name: 'static/fonts/[hash].[ext]',
+        },
+      },
+
+      {
+        test: isFavicon,
+        loader: 'file-loader',
+        options: {
+          esModule: false,
+          name: '[name].[ext]',
+        },
+      },
+
+      // > For example, if you want to load a .json file through
+      // > a custom loader, you'd need to set the type to javascript/auto
+      // > to bypass webpack's built-in json importing.
+      // https://webpack.js.org/configuration/module/#ruletype
+      {
+        test: /manifest\.webmanifest$/,
+        type: 'javascript/auto',
+        loader: 'file-loader',
+        options: {
+          esModule: false,
+          name: '[name].[ext]',
         },
       },
     ],
