@@ -14,4 +14,21 @@
   &:hover, &:focus {
     box-shadow: 0 8px 16px #560c13;
   }
+
+  &.#{$b}_loading {
+    background-image: linear-gradient(-45deg, #111 25%, rgba(#960714, .5) 25%, rgba(#960714, .5) 50%, #111 50%, #111 75%, rgba(#960714, .5) 75%, rgba(#960714, .5));
+    background-size: 35px 35px;
+    pointer-events: none;
+    animation: buttonLoading 2s linear infinite;
+
+    @keyframes buttonLoading {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: 35px 35px;
+      }
+    }
+  }
 }
