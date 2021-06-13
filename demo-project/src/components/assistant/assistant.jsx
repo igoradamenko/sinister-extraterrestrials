@@ -25,8 +25,8 @@ const DATA_BY_TYPE = {
         <p>I&rsquo;m giving full access to&nbsp;the system that may kill everyone on&nbsp;Earth to&nbsp;the boy who can&rsquo;t even remember his own password. Nice!</p>
       </>
     ),
-  }
-}
+  },
+};
 
 function getSrcSet(data) {
   return `${data.photoSrc1x} 1x, ${data.photoSrc2x} 2x`;
@@ -56,20 +56,19 @@ export default function Assistant(props) {
   return (
     <div className={b('assistant', props)}>
       <div className="assistant__message">
-        <img 
-          src={data.photoSrc1x} 
+        <img
+          src={data.photoSrc1x}
           srcSet={getSrcSet(data)}
           alt={data.photoDescription}
           className="assistant__photo assistant__photo_view_floating"
         />
-        
+
         {data.text}
       </div>
     </div>
   );
 }
 
-// TODO: check proptypes
 Assistant.propTypes = {
   mods: PropTypes.shape({
     type: PropTypes.oneOf(['greeting', 'success', 'password-reset']).isRequired,

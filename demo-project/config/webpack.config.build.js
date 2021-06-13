@@ -1,6 +1,7 @@
 const path = require('path');
 
 const webpack = require('webpack');
+
 const Define = webpack.DefinePlugin;
 const Provide = webpack.ProvidePlugin;
 const { CleanWebpackPlugin: Clean } = require('clean-webpack-plugin');
@@ -16,6 +17,7 @@ const basePath = process.env.BASE_PATH || '/';
 const isProduction = process.env.NODE_ENV === 'production';
 
 const { sep: pathSeparator } = require('path');
+
 const isFavicon = filepath => [
   'favicon.ico',
   'favicon.svg',
@@ -26,7 +28,7 @@ const isFavicon = filepath => [
 
 module.exports = {
   entry: {
-    app: resolveByRoot('src/app.jsx')
+    app: resolveByRoot('src/app.jsx'),
   },
 
   output: {
@@ -36,7 +38,7 @@ module.exports = {
     filename: 'static/[name].[contenthash].js',
   },
 
-  mode: isProduction ? 'production' : 'development', 
+  mode: isProduction ? 'production' : 'development',
 
   bail: true,
 
@@ -116,6 +118,7 @@ module.exports = {
           {
             loader: '@funboxteam/scss-imports-loader',
             options: {
+              // eslint-disable-next-line import/no-dynamic-require
               paths: require(resolveByRoot('config/scss-imports')),
             },
           },
@@ -180,7 +183,7 @@ module.exports = {
     new Copy({
       patterns: [
         {
-          from: resolveByRoot('src/static'), 
+          from: resolveByRoot('src/static'),
           to: resolveByRoot('public/static'),
         },
       ],
@@ -199,4 +202,4 @@ module.exports = {
       inject: false,
     }),
   ],
-}
+};

@@ -1,22 +1,24 @@
 .#{$b}_view_standard {
   width: 100%;
-  padding: 8px 16px;
   height: 48px;
-  background: $almostBlack;
-  border-radius: 8px;
+  padding: 8px 16px;
+  text-transform: uppercase;
   font-size: 24px;
   line-height: 32px;
-  color: $white;
-  text-transform: uppercase;
+  border-radius: 8px;
   box-shadow: 0 8px 16px $redShadow;
+  background: $almostBlack;
+  color: $white;
   transition: box-shadow .1s ease-in-out;
-  
+
   &:hover, &:focus {
     box-shadow: 0 8px 16px #560c13;
   }
 
   &.#{$b}_loading {
-    background-image: linear-gradient(-45deg, $almostBlack 25%, rgba($redRuby, .5) 25%, rgba($redRuby, .5) 50%, $almostBlack 50%, $almostBlack 75%, rgba($redRuby, .5) 75%, rgba($redRuby, .5));
+    $semiRuby: rgba($redRuby, .5);
+
+    background-image: linear-gradient(-45deg, $almostBlack 25%, $semiRuby 25%, $semiRuby 50%, $almostBlack 50%, $almostBlack 75%, $semiRuby 75%, $semiRuby 100%); // stylelint-disable-line max-line-length
     background-size: 35px 35px;
     pointer-events: none;
     animation: buttonLoading 2s linear infinite;
@@ -33,7 +35,7 @@
   }
 
   &.#{$b}_disabled {
-    pointer-events: none;
     color: $redDisabled;
+    pointer-events: none;
   }
 }

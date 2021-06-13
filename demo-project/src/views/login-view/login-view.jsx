@@ -38,7 +38,7 @@ export default class LoginView extends Component {
       isResetting: !prevState.isResetting,
       isError: false,
     }));
-    
+
     this.emailInputNode.focus();
   }
 
@@ -57,10 +57,10 @@ export default class LoginView extends Component {
 
     this.setState({ isLoading: true, isError: false });
 
-    const res = await postAuth({ email, password })
+    const res = await postAuth({ email, password });
 
     switch (res.status) {
-      case STATUS.OK: 
+      case STATUS.OK:
         this.setState({ isLoading: false, isLoggedIn: true });
         break;
 
@@ -78,7 +78,7 @@ export default class LoginView extends Component {
 
     this.setState({ isLoading: true, isError: false });
 
-    const res = await resetPassword({ email });
+    await resetPassword({ email });
 
     this.setState({
       isLoading: false,
@@ -118,23 +118,23 @@ export default class LoginView extends Component {
 
         <Form__Field mods={{ error: isError }}>
           <Form__Label for="email-field">E-mail:</Form__Label>
-          
+
           <Input
             mods={{ type: 'email', disabled: isLoading }}
             mix="form__input"
             id="email-field"
             name="email"
             value={email}
-            onForwardRef={r => this.emailInputNode = r}
+            onForwardRef={r => (this.emailInputNode = r)}
             onChange={this.handleEmailChange}
             autoFocus
           />
         </Form__Field>
-        
+
         {!isResetting && (
           <Form__Field mods={{ error: isError }}>
             <Form__Label for="password-field">Password:</Form__Label>
-            
+
             <Input
               mods={{ type: 'password', disabled: isLoading }}
               mix="form__input"
@@ -153,7 +153,7 @@ export default class LoginView extends Component {
           >
             {isResetting ? 'Reset password' : 'Sign in'}
           </Button>
-          
+
           <Button
             mods={{ type: 'button', view: 'pseudo-link', disabled: isLoading }}
             mix="form__action"

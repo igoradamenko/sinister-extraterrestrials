@@ -2,7 +2,7 @@ const STATUS = {
   OK: 'ok',
   WRONG_CREDENTIALS: 'wrong_credentials',
   WRONG_SESSION_ID: 'wrong_session_id',
-}
+};
 
 const FAKE_CREDENTIALS = {
   email: 'peterparker@stark.com',
@@ -21,13 +21,15 @@ function postAuth({ email, password }) {
   return fakeResponse(null, STATUS.WRONG_CREDENTIALS);
 }
 
+// it's fake fetcher, so it's fine that we don't use some variables
+// eslint-disable-next-line no-unused-vars
 function resetPassword({ email }) {
   return fakeResponse(null);
 }
 
 export {
   STATUS,
-  getAuth, 
+  getAuth,
   postAuth,
   resetPassword,
 };

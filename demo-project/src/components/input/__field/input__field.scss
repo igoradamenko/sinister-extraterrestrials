@@ -1,14 +1,14 @@
 .#{$b}__field {
   height: 48px;
-  font-size: 24px;
   padding: 8px 16px;
+  font-size: 24px;
   border-radius: 8px;
   box-shadow: 0 8px 16px $redShadow;
-  caret-color: $redRuby;
-  transition: box-shadow .1s ease-in-out;
   background: $white;
   color: $black;
-  
+  transition: box-shadow .1s ease-in-out;
+  caret-color: $redRuby;
+
   &:hover, &:focus {
     box-shadow: 0 8px 16px rgba($black, .4);
   }

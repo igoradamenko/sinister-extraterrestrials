@@ -2,10 +2,10 @@ const babelRuntimeVersion = require('./package').dependencies['@babel/runtime'];
 
 module.exports = {
   presets: [
-    ['@babel/preset-env', { 
+    ['@babel/preset-env', {
       modules: false,
       useBuiltIns: 'usage',
-      corejs: 3, 
+      corejs: 3,
     }],
     '@babel/preset-react',
   ],

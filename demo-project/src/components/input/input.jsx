@@ -26,10 +26,10 @@ export default class Input extends PureComponent {
     this.setState(
       prevState => ({
         type: prevState.type === 'password' ? 'text' : 'password',
-      }), 
+      }),
       () => {
         this.inputNode.focus();
-        
+
         const caretPosition = this.inputNode.value.length;
         this.inputNode.setSelectionRange(caretPosition, caretPosition);
       },
@@ -61,7 +61,7 @@ export default class Input extends PureComponent {
           className="input__field"
           id={id}
           name={name}
-          ref={r => this.inputNode = r}
+          ref={r => (this.inputNode = r)}
           disabled={mods.disabled}
           value={value}
           type={this.state.type}
@@ -85,10 +85,6 @@ export default class Input extends PureComponent {
   }
 }
 
-Input.defaultProps = {
-  value: '',
-};
-
 Input.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -99,4 +95,5 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  onForwardRef: PropTypes.func,
 };

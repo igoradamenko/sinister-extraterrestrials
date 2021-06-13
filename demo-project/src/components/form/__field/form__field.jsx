@@ -6,7 +6,7 @@ export default function Form__Field(props) {
 
 Form__Field.propTypes = {
   mods: PropTypes.shape({
-   error: PropTypes.bool,
+    error: PropTypes.bool,
   }),
   children: PropTypes.node,
 };

@@ -5,7 +5,7 @@ import MainLayout from 'layouts/main-layout';
 
 import LoginView from 'views/login-view';
 
-import { STATUS, getAuth } from 'services/fetcher';
+import { getAuth } from 'services/fetcher';
 
 import 'components/root';
 
@@ -17,7 +17,7 @@ const App = hot(() => (
   </MainLayout>
 ));
 
-getAuth().then(render)
+getAuth().then(render);
 
 function render() {
   ReactDOM.render(<App/>, ROOT_NODE);

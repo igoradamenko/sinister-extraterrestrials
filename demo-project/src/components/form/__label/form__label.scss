@@ -1,9 +1,9 @@
 .#{$b}__label {
   display: block;
-  color: #fff;
+  text-transform: uppercase;
   font-size: 18px;
   line-height: 24px;
-  text-transform: uppercase;
+  color: #fff;
 
   + .#{$b}__input {
     margin-top: 4px;

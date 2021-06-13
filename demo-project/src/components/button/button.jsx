@@ -1,3 +1,6 @@
+/* eslint-disable react/button-has-type */
+/* see: https://github.com/yannickcr/eslint-plugin-react/issues/1555 */
+
 export default function Button(props) {
   return (
     <button
@@ -16,6 +19,7 @@ export default function Button(props) {
 Button.propTypes = {
   disabled: PropTypes.bool,
   mods: PropTypes.shape({
+    disabled: PropTypes.bool,
     type: PropTypes.oneOf(['button', 'submit']).isRequired,
     view: PropTypes.oneOf(['standard', 'pseudo-link']).isRequired,
   }).isRequired,

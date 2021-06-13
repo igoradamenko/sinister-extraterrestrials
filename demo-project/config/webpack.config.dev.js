@@ -1,10 +1,9 @@
 const path = require('path');
 
 const webpack = require('webpack');
+
 const Define = webpack.DefinePlugin;
 const Provide = webpack.ProvidePlugin;
-const { CleanWebpackPlugin: Clean } = require('clean-webpack-plugin');
-const Terser = require('terser-webpack-plugin');
 const Html = require('html-webpack-plugin');
 const Copy = require('copy-webpack-plugin');
 const firewall = require('@funboxteam/webpack-dev-server-firewall');
@@ -15,6 +14,7 @@ const basePath = process.env.BASE_PATH || '/';
 const outputPath = resolveByRoot('public');
 
 const { sep: pathSeparator } = require('path');
+
 const isFavicon = filepath => [
   'favicon.ico',
   'favicon.svg',
@@ -38,7 +38,7 @@ module.exports = {
     filename: 'static/[name].js',
   },
 
-  mode: 'development', 
+  mode: 'development',
 
   bail: true,
 
@@ -66,7 +66,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
-      
+
       {
         test: /\.scss$/,
         use: [
@@ -98,6 +98,7 @@ module.exports = {
           {
             loader: '@funboxteam/scss-imports-loader',
             options: {
+              // eslint-disable-next-line import/no-dynamic-require
               paths: require(resolveByRoot('config/scss-imports')),
             },
           },
@@ -156,7 +157,7 @@ module.exports = {
     new Copy({
       patterns: [
         {
-          from: resolveByRoot('src/static'), 
+          from: resolveByRoot('src/static'),
           to: resolveByRoot('public/static'),
         },
       ],
@@ -191,4 +192,4 @@ module.exports = {
   // fix for broken devServer browserslistrc recognition
   // see: https://github.com/webpack/webpack-dev-server/issues/2758#issuecomment-706840237
   target: 'web',
-}
+};
