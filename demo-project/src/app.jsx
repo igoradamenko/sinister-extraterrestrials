@@ -7,7 +7,7 @@ import LoginView from 'views/login-view';
 
 import { STATUS, getAuth } from 'services/fetcher';
 
-require('components/root');
+import 'components/root';
 
 const ROOT_NODE = document.getElementById('app');
 

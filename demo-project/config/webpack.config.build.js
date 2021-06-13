@@ -76,8 +76,6 @@ module.exports = {
         use: ['babel-loader'],
       },
 
-      // TODO: add file-loader? and something to inline into index.ejs?
-
       {
         test: /\.scss$/,
         use: [
@@ -113,13 +111,21 @@ module.exports = {
         ],
       },
 
-
       {
         test: /\.(png|jpg|jpeg|gif|svg|webp)$/,
         loader: 'file-loader',
         options: {
           esModule: false,
           name: 'static/images/[hash].[ext]',
+        },
+      },
+
+      {
+        test: /\.(woff|woff2|ttf|otf|eot)$/,
+        loader: 'file-loader',
+        options: {
+          esModule: false,
+          name: 'static/fonts/[hash].[ext]',
         },
       },
     ],
