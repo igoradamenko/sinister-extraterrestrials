@@ -3,7 +3,7 @@ import Button from 'components/button';
 import Form, { Form__Field, Form__Label } from 'components/form';
 import Input from 'components/input';
 
-import { STATUS, postAuth } from 'services/fetcher';
+import { STATUS, postAuth, resetPassword } from 'services/fetcher';
 
 export default class LoginView extends Component {
   constructor(props) {
@@ -15,11 +15,14 @@ export default class LoginView extends Component {
       isLoading: false,
       isLoggedIn: false,
       isError: false,
+      isResetting: false,
+      isReset: false,
     };
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleResetClick = this.handleResetClick.bind(this);
   }
 
   handleEmailChange(email) {
@@ -30,9 +33,22 @@ export default class LoginView extends Component {
     this.setState({ password });
   }
 
+  handleResetClick() {
+    this.setState(prevState => ({ isResetting: !prevState.isResetting }));
+    this.emailInputNode.focus();
+  }
+
   async handleSubmit(e) {
     e.preventDefault();
 
+    if (this.state.isResetting) {
+      await this.resetPassword();
+    } else {
+      await this.auth();
+    }
+  }
+
+  async auth() {
     const { email, password } = this.state;
 
     this.setState({ isLoading: true, isError: false });
@@ -54,10 +70,33 @@ export default class LoginView extends Component {
     }
   }
 
-  render() {
-    const { email, password, isLoading, isError, isLoggedIn } = this.state;
+  async resetPassword() {
+    const { email } = this.state;
 
-    if (isLoggedIn) {
+    this.setState({ isLoading: true, isError: false });
+
+    const res = await resetPassword({ email });
+
+    this.setState({
+      isLoading: false,
+      isError: false,
+      isResetting: false,
+      isReset: true,
+    });
+  }
+
+  render() {
+    const {
+      email,
+      password,
+      isLoading,
+      isError,
+      isLoggedIn,
+      isResetting,
+      isReset,
+    } = this.state;
+
+    if (isLoggedIn || isReset) {
       return (
         <Assistant
           mods={{ type: 'success' }}
@@ -65,12 +104,12 @@ export default class LoginView extends Component {
       );
     }
 
-    const isEmpty = !email || !password;
+    const isEmpty = isResetting ? !email : (!email || !password);
 
     return (
       <Form onSubmit={this.handleSubmit}>
         <Assistant
-          mods={{ type: 'greeting' }}
+          mods={{ type: isResetting ? 'password-reset' : 'greeting' }}
           mix="form__assistant"
         />
 
@@ -84,34 +123,42 @@ export default class LoginView extends Component {
             id="email-field"
             name="email"
             value={email}
+            onForwardRef={r => this.emailInputNode = r}
             onChange={this.handleEmailChange}
             autoFocus
           />
         </Form__Field>
         
-        <Form__Field mods={{ error: isError }}>
-          <Form__Label for="password-field">Password:</Form__Label>
-          
-          <Input
-            mods={{ type: 'password', disabled: isLoading }}
-            mix="form__input"
-            id="password-field"
-            name="password"
-            value={password}
-            onChange={this.handlePasswordChange}
-          />
-        </Form__Field>
+        {!isResetting && (
+          <Form__Field mods={{ error: isError }}>
+            <Form__Label for="password-field">Password:</Form__Label>
+            
+            <Input
+              mods={{ type: 'password', disabled: isLoading }}
+              mix="form__input"
+              id="password-field"
+              name="password"
+              value={password}
+              onChange={this.handlePasswordChange}
+            />
+          </Form__Field>
+        )}
 
         <Form__Field>
           <Button
             mods={{ type: 'submit', view: 'standard', disabled: isEmpty, loading: isLoading }}
             mix="form__action"
-          >Sign in</Button>
+          >
+            {isResetting ? 'Reset password' : 'Sign in'}
+          </Button>
           
           <Button
             mods={{ type: 'button', view: 'pseudo-link', disabled: isLoading }}
             mix="form__action"
-          >Reset password</Button>
+            onClick={this.handleResetClick}
+          >
+            {isResetting ? 'Sign in' : 'Reset password'}
+          </Button>
         </Form__Field>
       </Form>
     );
