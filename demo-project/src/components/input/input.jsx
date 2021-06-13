@@ -12,6 +12,12 @@ export default class Input extends PureComponent {
     this.handlePasswordSwitch = this.handlePasswordSwitch.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.onForwardRef) {
+      this.props.onForwardRef(this.inputNode);
+    }
+  }
+
   handleChange({ target: { value } }) {
     this.props.onChange(value);
   }
@@ -19,7 +25,6 @@ export default class Input extends PureComponent {
   handlePasswordSwitch() {
     this.setState(
       prevState => ({
-        ...prevState,
         type: prevState.type === 'password' ? 'text' : 'password',
       }), 
       () => {
