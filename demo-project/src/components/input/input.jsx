@@ -83,6 +83,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
   mods: PropTypes.shape({
+    disabled: PropTypes.bool,
     type: PropTypes.oneOf(['email', 'password']).isRequired,
   }).isRequired,
   autoFocus: PropTypes.bool,

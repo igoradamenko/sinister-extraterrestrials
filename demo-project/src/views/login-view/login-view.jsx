@@ -45,6 +45,8 @@ export default class LoginView extends Component {
   render() {
     const { email, password, isLoading } = this.state;
 
+    const isEmpty = !email || !password;
+
     return (
     // TODO: add face id login
     // TODO: errors!
@@ -67,7 +69,6 @@ export default class LoginView extends Component {
         {/* TODO: connect label and input */}
         <Form__Label>Password:</Form__Label>
         
-        {/* TODO: add a way to make password visible */}
         <Input
           mods={{ type: 'password', disabled: isLoading }}
           mix="form__input" 
@@ -77,9 +78,8 @@ export default class LoginView extends Component {
       </Form__Field>
 
       <Form__Field>
-        {/* TODO: block if not all the fields are filled */}
         <Button
-          mods={{ type: 'submit', view: 'standard', loading: isLoading }}
+          mods={{ type: 'submit', view: 'standard', disabled: isEmpty, loading: isLoading }}
           mix="form__action"
         >Sign in</Button>
         

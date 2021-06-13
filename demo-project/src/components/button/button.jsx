@@ -3,6 +3,7 @@ export default function Button(props) {
     <button
       className={b('button', props)}
       type={props.mods.type}
+      disabled={props.mods.disabled}
     >
       <span className="button__text">
         {props.children}
@@ -12,6 +13,7 @@ export default function Button(props) {
 }
 
 Button.propTypes = {
+  disabled: PropTypes.bool,
   mods: PropTypes.shape({
     type: PropTypes.oneOf(['button', 'submit']).isRequired,
     view: PropTypes.oneOf(['standard', 'pseudo-link']).isRequired,

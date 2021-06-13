@@ -31,4 +31,9 @@
       }
     }
   }
+
+  &.#{$b}_disabled {
+    pointer-events: none;
+    color: #845d5d;
+  }
 }
