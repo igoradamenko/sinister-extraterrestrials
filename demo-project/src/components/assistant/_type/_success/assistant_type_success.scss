@@ -1,0 +1,10 @@
+.#{$b}_type_success {
+  display: flex;
+  min-height: 100%;
+  margin: 0 auto;
+  
+  .#{$b}__logo {
+    border: 4px solid #fff;
+    background: #fff;
+  }
+}

@@ -55,55 +55,65 @@ export default class LoginView extends Component {
   }
 
   render() {
-    const { email, password, isLoading, isError } = this.state;
+    const { email, password, isLoading, isError, isLoggedIn } = this.state;
+
+    if (isLoggedIn) {
+      return (
+        <Assistant
+          mods={{ type: 'success' }}
+        />
+      );
+    }
 
     const isEmpty = !email || !password;
 
     return (
-    // TODO: add face id login
-    <Form onSubmit={this.handleSubmit}>
-      <Assistant mix="form__assistant"/>
-
-      <Form__Field mods={{ error: isError }}>
-        {/* TODO: check autocomplete! */}
-        <Form__Label for="email-field">E-mail:</Form__Label>
-        
-        <Input
-          mods={{ type: 'email', disabled: isLoading }}
-          mix="form__input"
-          id="email-field"
-          name="email"
-          value={email}
-          onChange={this.handleEmailChange}
-          autoFocus
+      <Form onSubmit={this.handleSubmit}>
+        <Assistant
+          mods={{ type: 'greeting' }}
+          mix="form__assistant"
         />
-      </Form__Field>
-      
-      <Form__Field mods={{ error: isError }}>
-        <Form__Label for="password-field">Password:</Form__Label>
-        
-        <Input
-          mods={{ type: 'password', disabled: isLoading }}
-          mix="form__input"
-          id="password-field"
-          name="password"
-          value={password}
-          onChange={this.handlePasswordChange}
-        />
-      </Form__Field>
 
-      <Form__Field>
-        <Button
-          mods={{ type: 'submit', view: 'standard', disabled: isEmpty, loading: isLoading }}
-          mix="form__action"
-        >Sign in</Button>
+        <Form__Field mods={{ error: isError }}>
+          {/* TODO: check autocomplete! */}
+          <Form__Label for="email-field">E-mail:</Form__Label>
+          
+          <Input
+            mods={{ type: 'email', disabled: isLoading }}
+            mix="form__input"
+            id="email-field"
+            name="email"
+            value={email}
+            onChange={this.handleEmailChange}
+            autoFocus
+          />
+        </Form__Field>
         
-        <Button
-          mods={{ type: 'button', view: 'pseudo-link', disabled: isLoading }}
-          mix="form__action"
-        >Reset password</Button>
-      </Form__Field>
-    </Form>
-  );
+        <Form__Field mods={{ error: isError }}>
+          <Form__Label for="password-field">Password:</Form__Label>
+          
+          <Input
+            mods={{ type: 'password', disabled: isLoading }}
+            mix="form__input"
+            id="password-field"
+            name="password"
+            value={password}
+            onChange={this.handlePasswordChange}
+          />
+        </Form__Field>
+
+        <Form__Field>
+          <Button
+            mods={{ type: 'submit', view: 'standard', disabled: isEmpty, loading: isLoading }}
+            mix="form__action"
+          >Sign in</Button>
+          
+          <Button
+            mods={{ type: 'button', view: 'pseudo-link', disabled: isLoading }}
+            mix="form__action"
+          >Reset password</Button>
+        </Form__Field>
+      </Form>
+    );
   }
 }
