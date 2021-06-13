@@ -24,4 +24,4 @@
 
 **[Source Code](./demo-project)**
 
-**[GitHub Pages]()**
+**[GitHub Pages](https://igoradamenko.github.io/sinister-extraterrestrials/)**
