@@ -4,6 +4,7 @@ export default function Button(props) {
       className={b('button', props)}
       type={props.mods.type}
       disabled={props.mods.disabled}
+      onClick={props.onClick}
     >
       <span className="button__text">
         {props.children}
@@ -19,4 +20,5 @@ Button.propTypes = {
     view: PropTypes.oneOf(['standard', 'pseudo-link']).isRequired,
   }).isRequired,
   children: PropTypes.node,
+  onClick: PropTypes.func,
 };
