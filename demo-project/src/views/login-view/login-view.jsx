@@ -34,7 +34,11 @@ export default class LoginView extends Component {
   }
 
   handleResetClick() {
-    this.setState(prevState => ({ isResetting: !prevState.isResetting }));
+    this.setState(prevState => ({
+      isResetting: !prevState.isResetting,
+      isError: false,
+    }));
+    
     this.emailInputNode.focus();
   }
 
