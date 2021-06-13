@@ -17,7 +17,7 @@ const App = hot(() => (
 
 ReactDOM.render(<App/>, ROOT_NODE);
 
-document.body.addEventListener('transitionend', onBodyTransitionEnd);
+document.body.addEventListener('transitionend', onBodyTransitionEnd, { once: true });
 
 document.body.classList.add('root_inited');
 
@@ -30,5 +30,4 @@ function setViewportHeightVariable() {
 
 function onBodyTransitionEnd() {
   document.getElementById('global-preloader').remove();
-  document.body.removeEventListener('transitionend', onBodyTransitionEnd);
 }
