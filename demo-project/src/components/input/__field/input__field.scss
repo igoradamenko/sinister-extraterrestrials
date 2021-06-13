@@ -7,6 +7,8 @@
   box-shadow: 0 8px 16px #821620;
   caret-color: #960714; /* TODO: probably move colors to variables */
   transition: box-shadow .1s ease-in-out;
+  background: #fff;
+  color: #000;
   
   &:hover, &:focus {
     box-shadow: 0 8px 16px #560c13;

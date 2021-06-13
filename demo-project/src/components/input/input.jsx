@@ -53,6 +53,7 @@ export default class Input extends PureComponent {
         <input
           className="input__field"
           ref={r => this.inputNode = r}
+          disabled={mods.disabled}
           value={value}
           type={this.state.type}
           autoFocus={autoFocus}
@@ -61,14 +62,14 @@ export default class Input extends PureComponent {
           autoCorrect={autoCorrect}
         />
 
-        {initialType === 'password' && isFilled && (
+        {initialType === 'password' && isFilled && !mods.disabled && (
           // TODO: a11y
           <button
             type="button"
             className="input__password-switcher"
             onClick={this.handlePasswordSwitch}
           >
-            {type === 'password' ? 'Show' : 'Hide'}
+            {type === 'password' || mods.disabled ? 'Show' : 'Hide'}
           </button>
         )}
       </div>

@@ -1,0 +1,7 @@
+.#{$b}_disabled {
+  pointer-events: none;
+  
+  .#{$b}__field {
+    color: #845d5d;
+  }
+}
