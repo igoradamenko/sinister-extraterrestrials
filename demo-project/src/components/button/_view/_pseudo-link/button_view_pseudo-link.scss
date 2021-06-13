@@ -32,7 +32,7 @@
     }
   }
 
-  &:hover {
+  &:hover, &:focus {
     .#{$b}__text {
       &:before {
         transform: scale(1);

@@ -3,6 +3,7 @@ input {
   border: 0;
   width: 100%;
   box-sizing: border-box;
+  outline: none;
 }
 
 button {
@@ -10,7 +11,7 @@ button {
   padding: 0;
   border: 0;
   background: transparent;
-  outline: none; /* TODO: fix it; should it be placed in a block? */
+  outline: none;
   font: inherit;
 }
 
