@@ -79,6 +79,17 @@
         opacity: 0;
       }
     }
+
+    .old-browser {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120px;
+      height: 120px;
+      transform: translate(-50%, -50%);
+      border: 4px solid #fff;
+      border-radius: 50%;
+    }
   </style>
 </head>
 <body class="root">
@@ -94,5 +105,41 @@
   </svg>
 
   <div id="app" class="root__content"></div>
+
+  <script>
+    var styles = [
+      <% for (var file in htmlWebpackPlugin.files.css) { %>
+        "<%= htmlWebpackPlugin.files.css[file] %>",
+      <% } %>
+    ];
+
+    var scripts = [
+      <% for (var file in htmlWebpackPlugin.files.js) { %>
+        "<%= htmlWebpackPlugin.files.js[file] %>",
+      <% } %>
+    ];
+
+    if ('CSS' in window && 'supports' in window.CSS && window.CSS.supports('display: grid')) {
+      styles.forEach(style => {
+        var node = document.createElement('link');
+        node.setAttribute('rel', 'stylesheet');
+        node.setAttribute('href', style);
+        document.body.appendChild(node);
+      });
+
+      scripts.forEach(script => {
+        var node = document.createElement('script');
+        node.setAttribute('src', script);
+        document.body.appendChild(node);
+      });
+    } else {
+      document.getElementById('global-preloader').remove();
+
+      var node = document.createElement('img');
+      node.setAttribute('src', '<%= htmlWebpackPlugin.files.publicPath %>static/old-browser.png');
+      node.setAttribute('class', 'old-browser');
+      document.body.appendChild(node);
+    }
+  </script> 
 </body>
 </html>

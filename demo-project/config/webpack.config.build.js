@@ -7,12 +7,14 @@ const { CleanWebpackPlugin: Clean } = require('clean-webpack-plugin');
 const Terser = require('terser-webpack-plugin');
 const Html = require('html-webpack-plugin');
 const MiniCssExtract = require('mini-css-extract-plugin');
+const Copy = require('copy-webpack-plugin');
 const Csso = require('csso-webpack-plugin').default;
 
 const resolveByRoot = x => path.resolve(__dirname, '..', ...x.split('/'));
 
 const basePath = process.env.BASE_PATH || '/';
 const isProduction = process.env.NODE_ENV === 'production';
+
 
 module.exports = {
   entry: {
@@ -23,6 +25,7 @@ module.exports = {
     path: resolveByRoot('public'),
     publicPath: basePath,
     uniqueName: 'app',
+    // TODO: move 'static' to variable
     filename: 'static/[name].[contenthash].js',
   },
 
@@ -132,6 +135,14 @@ module.exports = {
     new Define({
       BASE_PATH: JSON.stringify(basePath),
     }),
+    new Copy({
+      patterns: [
+        {
+          from: resolveByRoot('src/static'), 
+          to: resolveByRoot('public/static'),
+        },
+      ],
+    }),
     new Provide({
       React: 'react',
       Component: ['react', 'Component'],
@@ -143,10 +154,7 @@ module.exports = {
     }),
     new Html({
       template: resolveByRoot('src/index.ejs'),
-      minify: {
-        removeScriptTypeAttributes: true,
-      },
-      scriptLoading: 'blocking',
+      inject: false,
     }),
   ],
 }
